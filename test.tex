@@ -1,0 +1,108 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\title{Your Paper}
+\author{You}
+
+\begin{document}
+
+\section{Exercice 5}
+\subsection{}
+Soit le système suivant :
+$$
+\left\{
+    \begin{array}{ll}
+        x'(t)=-y(t) + u(t)cos(t) \\
+        y'(t)=x(t)+u(t)sin(t)
+    \end{array}
+\right.
+$$
+Linéarisons le système, il peut donc s'écrire de la forme suivante :
+\[
+\begin{pmatrix}
+x'\\
+y'
+\end{pmatrix} =\begin{pmatrix}
+0 & -1 \\
+1 & 0 
+\end{pmatrix}\begin{pmatrix}
+x\\
+y 
+\end{pmatrix} + \begin{pmatrix}
+cos(t)\\
+sin(t)
+\end{pmatrix} u(t) = A \begin{pmatrix}
+x \\
+y 
+\end{pmatrix} + B u(t)
+\]
+avec $A =\begin{pmatrix}
+0 & -1 \\
+1 & 0 
+\end{pmatrix}$ et $B = \begin{pmatrix}
+cos(t) \\
+sin(t)
+\end{pmatrix}$
+\newline{}
+On a donc n=2 et m=1, la matrice Kal(A,b) sera de la forme : 
+\[
+Kal(A,B)=[B|AB]=\begin{pmatrix}
+cos(t) & -sin(t)  \\
+sin(t) & cos(t)
+\end{pmatrix}
+\]
+donc :
+\[
+det(Kal(A,B))= 1 \neq 0 \quad \forall t \in [0,T]
+\]
+On a donc que le rang de la matrice est maximale. le système est linéaire, mais pas autonome (pas de la forme x’ = Ax+Bu avec A et B ne dépendant pas de t). On a donc que le  critère de Kalman ne dit rien sur la contrôlabilité dans ce cas.
+
+\subsection{}
+Posons $g(t)=x(t)sin(t) - y(t)cos(t)$ \newline{}
+alors : 
+\[ g'(t)=x'(t)sin(t) + x(t)cos(t) - y'(t)cos(t) + y(t)sin(t)
+\]
+or :
+$$
+\left\{
+    \begin{array}{ll}
+        x'(t)=-y(t) + u(t)cos(t) \\
+        y'(t)=x(t)+u(t)sin(t)
+    \end{array}
+\right.
+$$
+donc :
+\[g'(t)=-y(t)sin(t)+u(t)cos(t)sin(t)+x(t)cos(t) - x(t)cos(t) -u(t)cos(t)sin(t) + y(t)sin(t)\]
+et donc :  \[ g'(t)=0
+\]
+donc g(t) est constante quelque soit t. \newline{}
+En particulier $g(T)=g(0)=c_1$ avec $c_1$ une constante.\newline{}
+et ainsi : 
+\[
+(*)\quad  x(T)sin(T) - y(T)cos(T)=-y(0)
+\]
+en posant T=2$\pi$, (*) se réécrit y(2$\pi$)=y(0)\newline{}
+Or, posont maintenant en temps T = 2$\pi$:
+\[
+\begin{pmatrix}
+        x \\
+        y
+    \end{pmatrix}=\begin{pmatrix}
+        0 \\
+        y(0)+1
+    \end{pmatrix}
+\]
+Mais y($2\pi$)=y(0) donc y(2$\pi$) $\neq$ y(0) + 1, donc on ne peut pas trouver u tel que y(2$\pi$) = y(0)+1 donc le système n'est pas contrôlable en temps $2\pi$.
+\end{document}
