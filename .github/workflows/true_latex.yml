@@ -28,7 +28,7 @@ jobs:
         uses: ./
         with:
           # The root LaTeX file to be compiled
-          root_file: test/test.tex
+          root_file: test.tex
           # The working directory for the LaTeX engine
           working_directory: # optional
           # The LaTeX engine to be invoked
