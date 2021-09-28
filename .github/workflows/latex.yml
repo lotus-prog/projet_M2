@@ -7,8 +7,9 @@ jobs:
   my-job:
     runs-on: ubuntu-latest
     steps:
-      - name: pdf-latex
+      - name: install latex
         run: sudo apt-get install texlive-latex-base
+      - name: compiler latex
         run: pdflatex test.tex
       
  
