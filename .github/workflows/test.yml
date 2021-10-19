@@ -1,9 +1,9 @@
 name: test PDF  
 
-on:
+on : 
   push:
-    paths:
-      - main.tex
+    branches:
+      - main
     
 jobs:
   build_latex:
