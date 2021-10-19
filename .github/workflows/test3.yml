@@ -1,0 +1,29 @@
+name: Compile PDF 
+on:
+  push:
+    paths: 
+      - '*'
+      - '!./report.tex'
+
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@master
+        with:
+          root_file: report.tex
+          latexmk_shell_escape: true
+          extra_system_packages: "py-pygments"
+          post_compile: "mv report.pdf pdf/"
+      - name: commit
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "github-actions"
+          git add pdf/report.pdf
+          git commit -m "Auto updating of report.pdf"
+      
+      - name: push
+        run: git push
