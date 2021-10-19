@@ -18,8 +18,8 @@ jobs:
       
       - name: Commit and Push new file         
         run:  |   
-          git config user.name qdumont           
-          git config user.email quentin.dumont@etu.unistra.fr          
+          git config user.name <qdumont>           
+          git config user.email <quentin.dumont@etu.unistra.fr>          
           git add *.pdf          
           git commit -m "add PDF file"           
           git push
